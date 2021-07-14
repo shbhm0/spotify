@@ -1,0 +1,9 @@
+com/spotify/MainApplication.java
+ com.spotify.MainApplication
+ com.spotify.MainApplication$1
+com/spotify/MainActivity.java
+ com.spotify.MainActivity
+com/spotify/BuildConfig.java
+ com.spotify.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
