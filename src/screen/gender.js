@@ -6,11 +6,8 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import { date } from 'yup';
 import Button from '../customs/button'
 import { vw, vh } from '../dimension/dimension'
-import Password from '../screen/createpass'
-import DOB from '../screen/DOB'
-import Name from '../screen/signupname'
 
-export default class Gender extends React.Component {
+export  default class Gender extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -99,7 +96,7 @@ const styles = StyleSheet.create({
       marginLeft:vw(15),
       marginTop:vh(10),
     height: Platform.OS==="ios"?vh(45):vh(60),
-    width: '100%',
+    width: '94%',
     backgroundColor: 'grey',
     borderRadius: 5,
     justifyContent:'center'
@@ -119,12 +116,12 @@ dropDownTextStyle:{
     marginLeft:vw(20)
 },
 dropDownContainer:{
-    backgroundColor:'#525252',
-    width:'100%',
+    backgroundColor:'#333333',
+    width:'94%',
     marginTop:vh(10)
 },
 DownTextStyle:{
-    backgroundColor:'#525252',
+    backgroundColor:'#333333',
     color:'white',
     fontSize:vh(14),
     marginLeft:vw(20)

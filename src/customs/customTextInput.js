@@ -2,7 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 import {View,Text,StyleSheet,Image,TextInput} from 'react-native'
 import {vw,vh} from '../dimension/dimension'
-
+import EyeToggle from '../customs/toggle_eye'
 export default class Custom extends React.Component{
     state= {
         isFocused: false
@@ -47,5 +47,8 @@ const styles=StyleSheet.create({
       borderRadius:(5),
       marginTop:vh(5),
       color:'white'
+  },
+  container:{
+    flexDirection:'row',
   }
 })

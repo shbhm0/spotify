@@ -5,15 +5,13 @@ import CustomTextInput from '../customs/customTextInput'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import Button from '../customs/button'
-import HomeScreen from '../screen/Homescreen'
-import Password from '../screen/createpass'
 import { doLogin } from '../action/index'
 import { connect } from 'react-redux'
 import { Platform } from 'react-native';
 
 class SignUp extends React.Component {
-    state={
-        disabled:true
+    state = {
+        disabled: true
     }
 
     reviewShcema = yup.object({
@@ -26,6 +24,7 @@ class SignUp extends React.Component {
             email: values.email
         }
         this.props.doLogin(payload)
+        this.props.navigation.navigate('Password')
     }
     render() {
         return (
@@ -34,14 +33,14 @@ class SignUp extends React.Component {
                     <Text style={styles.loginText}>Create account</Text>
                 </SafeAreaView>
                 <Formik
-                    initialValues={{ email: ''}}
+                    initialValues={{ email: '' }}
                     validationSchema={this.reviewShcema}
                     onSubmit={(values) => this.loginUser(values)}
                 >
                     {props => (
                         <View style={styles.subContainer}>
-                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('HomeScreen')}>
-                            <Image style={styles.backImage} source={require('../assets/back.png')} />
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeScreen')}>
+                                <Image style={styles.backImage} source={require('../assets/back.png')} />
                             </TouchableOpacity>
                             <Text style={styles.inputHeader}>What's your email?</Text>
                             <CustomTextInput
@@ -52,13 +51,13 @@ class SignUp extends React.Component {
                             <Text style={styles.belowText}>You'll need to confirm this email later</Text>
                             <View style={styles.buttonContainer}>
                                 <Button
-                                height={Platform.OS==="ios"?40:50}
-                                width={150}
-                                color='black'
-                                buttonText='NEXT'
+                                    height={Platform.OS === "ios" ? 40 : 50}
+                                    width={150}
+                                    color='black'
+                                    buttonText='NEXT'
                                     backgroundColor='white'
-                                    disabled={props.values.email != '' && props.errors.email === undefined? false : true}
-                                    onPress={()=>props.handleSubmit(this.props.navigation.navigate('Password'))}
+                                    disabled={props.values.email != '' && props.errors.email === undefined ? false : true}
+                                    onPress={() => props.handleSubmit()}
                                 />
                             </View>
                         </View>
@@ -84,15 +83,15 @@ const styles = StyleSheet.create({
     loginText: {
         color: 'white',
         fontWeight: 'bold',
-        fontSize:Platform.OS==="ios"?null:vh(16)
+        fontSize: Platform.OS === "ios" ? null : vh(16)
     },
     subContainer: {
         marginLeft: vw(15),
         marginRight: vw(15)
     },
     backImage: {
-        height:Platform.OS? vh(20):vh(25),
-        width: Platform.OS? vh(20):vh(25)
+        height: Platform.OS ? vh(20) : vh(25),
+        width: Platform.OS ? vh(20) : vh(25)
     },
     inputHeader: {
         color: 'white',
@@ -111,27 +110,27 @@ const styles = StyleSheet.create({
     buttonContainer: {
         marginTop: vh(40)
     },
-    bottomButton:{
-        height:vh(25),
-        width:'60%',
-        borderWidth:1,
-        borderColor:'lightgrey',
-        borderRadius:normalize(40),
-        alignItems:'center',
-        justifyContent:'center'
+    bottomButton: {
+        height: vh(25),
+        width: '60%',
+        borderWidth: 1,
+        borderColor: 'lightgrey',
+        borderRadius: normalize(40),
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    bottomContainer:{
-        marginTop:vh(25),
-        alignItems:'center',
-        justifyContent:'center'
+    bottomContainer: {
+        marginTop: vh(25),
+        alignItems: 'center',
+        justifyContent: 'center'
     },
-    bottomText:{
-        color:'white',
-        fontWeight:'bold',
-        fontSize:vh(10)
+    bottomText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: vh(10)
     },
-    belowText:{
-        fontSize:11,
-        color:'lightgrey'
+    belowText: {
+        fontSize: 11,
+        color: 'lightgrey'
     }
 })

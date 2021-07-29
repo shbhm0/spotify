@@ -5,11 +5,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import { vw, vh, normalize } from '../dimension/dimension'
 import AlbumDetails from '../dummy_data/albumDetails'
 import Home from '../screen/home_screen'
+import HeartToggle from '../customs/heart_toggle'
+
 
 export default class Playlist extends React.Component {
-
+    state={
+        list:[]
+    }
     scrollContent=({item})=>{
-        console.log(item);
         return(
             <View style={styles.subContainer1}>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Player')}>
@@ -21,19 +24,19 @@ export default class Playlist extends React.Component {
                 <Text style={styles.artistText} >{item.artist}</Text>
                 </View>
                 </View>
+                <HeartToggle
+                height={10}
+                right={10}
+                />
                 </TouchableOpacity> 
-                <TouchableOpacity>
-                <Image style={styles.more} source={require('../assets/heart_download/more.png')}/>
-                </TouchableOpacity>
             </View>
         )
     }
-
     headerComponent=()=>{
         return(
             <View style={styles.subContainer}>
             <View style={styles.headerContainer}>
-                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Home')}>
+                <TouchableOpacity onPress={()=>this.props.navigation.goBack()}>
                     <Image style={styles.backImage} source={require('../assets/back.png')} />
                 </TouchableOpacity>
                 <View style={styles.imageContainer}>
@@ -76,6 +79,7 @@ export default class Playlist extends React.Component {
                     useAngle={true}
                     angle={0}
                 >
+
                     <SafeAreaView>
 
                     </SafeAreaView>
@@ -204,6 +208,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-between'
     },
     more:{
-        tintColor:'white'
+        height:vh(20),
+        width:vw(20)
     }
 })

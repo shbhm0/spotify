@@ -17,7 +17,7 @@ class Drawer extends React.Component {
         return (
             <View style={styles.container}>
                 <SafeAreaView style={styles.safeArea}>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+                    <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                         <Image style={styles.backImage} source={require('../assets/back.png')} />
                     </TouchableOpacity>
                     <Text style={styles.header}>Settings</Text>

@@ -19,7 +19,7 @@ export default class Search extends React.Component {
 
                  </SafeAreaView> */}
                  <SearchItem
-                 onPress={()=>this.props.navigation.navigate('Playlist2')}
+                 onPress={()=>this.props.navigation.navigate('Playlist')}
                  Data_item={SearchData}
                  ListHeaderComponent={
                      

@@ -15,7 +15,7 @@ class Profile extends React.Component {
                     angle={0}
                 >
                     <SafeAreaView style={styles.safeArea}>
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Drawer')}>
+                        <TouchableOpacity onPress={()=>this.props.navigation.goBack()}>
                             <Image style={styles.backImage} source={require('../assets/back.png')}/>
                         </TouchableOpacity>
                     </SafeAreaView>

@@ -5,8 +5,6 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import { date } from 'yup';
 import Button from '../customs/button'
 import { vw, vh } from '../dimension/dimension'
-import Password from '../screen/createpass'
-import Gender from '../screen/gender'
 export default class DOB extends React.Component {
   constructor(props) {
     super(props)
@@ -37,11 +35,11 @@ export default class DOB extends React.Component {
         <SafeAreaView style={styles.navbar}>
           <Text style={styles.loginText}>Create account</Text>
         </SafeAreaView>
-
-        <View style={styles.subContainer}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Password')}>
+          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
             <Image style={styles.backImage} source={require('../assets/back.png')} />
           </TouchableOpacity>
+
+        <View style={styles.subContainer}>
           <Text style={styles.inputHeader}>What's your Date of birth?</Text>
           <TouchableOpacity
             style={styles.calenderButton}

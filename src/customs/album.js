@@ -1,12 +1,9 @@
 import React from 'react'
-import Raect from 'react'
 import { View, Text, FlatList, Image, TouchableOpacity,StyleSheet} from 'react-native'
-import Album_Data from '../dummy_data/albumCategories'
 import {vh,vw,normalize} from '../dimension/dimension'
 
 export default class Search extends React.Component {
     _renderItem=({item})=>{
-        console.log(Album_Data);
         return(
             
         <View style={styles.container2}>

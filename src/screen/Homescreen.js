@@ -3,17 +3,56 @@ import { View, Text, StyleSheet, Image, ImageBackground, Modal ,Platform} from '
 import { vh, vw, normalize } from '../dimension/dimension'
 import CustomTextInput from '../customs/customTextInput'
 import Button from '../customs/button'
-import SignIn from '../screen/signin'
-import SignUp from '../screen/signup'
 import { Dimensions } from 'react-native'
-
-export default class App extends React.Component {
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+export default class HomeScreen extends React.Component {
+    componentDidMount(){
+        if(Platform.OS==="android")
+        {
+        GoogleSignin.configure({
+            webClientId: '998416061274-7ihqqtfn3mdkhlokufg3lbmj4hamfr3p.apps.googleusercontent.com',
+          });
+        }
+    }
+    // GoogleSignIn=()=> {
+    //     try{
+    //     // Get the users ID token
+    //     const { idToken } =GoogleSignin.signIn();
+      
+    //     // Create a Google credential with the token
+    //     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      
+    //     // Sign-in the user with the credential
+    //     return auth().signInWithCredential(googleCredential);
+    //     }
+    //     catch{
+    //         console.log({error});
+    //     }
+    // }
     render() {
+        if(Platform.OS==="android"){
+        async function onGoogleButtonPress() {
+            try{
+            // Get the users ID token
+            const { idToken } = await GoogleSignin.signIn();
+          
+            // Create a Google credential with the token
+            const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+          
+            // Sign-in the user with the credential
+            return auth().signInWithCredential(googleCredential);
+            }
+            catch(error){
+                console.log({error});
+            }
+          }
+        }
         return (
             <View style={styles.container}>
                 <ImageBackground
                     style={styles.backImage}
-                    source={require('../assets/spotify_collage.png')}
+                    source={{uri:'https://thumbs.dreamstime.com/z/collage-portraits-young-musicians-multicolored-background-neon-collage-portraits-young-emotional-talented-175283811.jpg'}}
                 >
                     <View style={styles.upperContainer}>
                         <View style={styles.textContainer}>
@@ -50,7 +89,7 @@ export default class App extends React.Component {
                             borderColor='grey'
                             buttonText='Continue with Google'
                             imageSource={require('../assets/google.png')}
-                            onPress={()=>alert('Coming Soon')}
+                            onPress={Platform.OS==="ios" ?null:onGoogleButtonPress}
                         />
                         <Button
                             height={Platform.OS==="ios"? 45:60}
@@ -94,7 +133,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.82)',
     },
     lowerContainer: {
-        flex: 0.8,
+        flex: 0.75,
         alignItems: 'center',
         backgroundColor: 'rgba(0,0,0,0.85)'
     },
@@ -113,13 +152,14 @@ const styles = StyleSheet.create({
     textContainer: {
         alignItems:'center',
         justifyContent:'center',
-        top:vh(200)
+        top:vh(180)
     },
     loginText: {
         color: 'white',
         fontWeight: '500',
         marginTop: vh(20),
-        fontSize:Platform.OS==="ios"?16:vh(17)
+        fontSize:Platform.OS==="ios"?16:vh(17),
+        fontWeight:'bold'
     },
     buttonContainer:{
         marginTop:vh(30),

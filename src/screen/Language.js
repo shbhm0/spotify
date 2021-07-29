@@ -6,13 +6,11 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import Button from '../customs/button'
 import HomeScreen from './Homescreen'
-import Bottom from './bottomtab'
 import EyeToggle from '../customs/toggle_eye'
 import MusicTaste from '../customs/musicTaste'
 import LanguageData from '../dummy_data/language'
-export default class Signin extends React.Component {
+export  default class Language extends React.Component {
     render() {
-        console.log(LanguageData)
         return (
             <View style={styles.container}>
                 <SafeAreaView style={styles.navbar}>

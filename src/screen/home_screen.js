@@ -5,9 +5,8 @@ import { vh, vw } from '../dimension/dimension'
 import Button from '../customs/button_items'
 import Album from '../customs/album'
 import Album_Data from '../dummy_data/albumCategories'
-import Playlist from './playlistScreen'
-import Drawer from '../screen/menuDrawer'
-export default class Home extends React.Component {
+import {connect} from 'react-redux'
+class Home extends React.Component {
     render() {
         return (
                 <ScrollView style={styles.scroll}>
@@ -123,7 +122,13 @@ export default class Home extends React.Component {
         )
     }
 }
-
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+    list:state.authReducer
+    }
+}
+export default connect(mapStateToProps)(Home)
 const styles = StyleSheet.create({
     container: {
         flex: 1,

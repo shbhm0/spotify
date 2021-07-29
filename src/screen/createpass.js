@@ -1,19 +1,17 @@
 import React from 'react'
-import { View, Image, Text, SafeAreaView, StyleSheet, TouchableOpacity,Platform} from 'react-native'
+import { View, Image, Text, SafeAreaView, StyleSheet, TouchableOpacity, Platform } from 'react-native'
 import { vw, vh, normalize } from '../dimension/dimension'
 import CustomTextInput from '../customs/customTextInput'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import Button from '../customs/button'
-import SignUp from '../screen/signup'
-import DOB from '../screen/DOB'
 import { doLogin } from '../action/index'
 import { connect } from 'react-redux'
 import EyeToggle from '../customs/toggle_eye'
 class Password extends React.Component {
     state = {
         disabled: true,
-        eye_enable:true
+        eye_enable: true
     }
     reviewShcema = yup.object({
         password: yup.string()
@@ -28,6 +26,7 @@ class Password extends React.Component {
             password: values.password
         }
         this.props.doLogin(payload)
+        this.props.navigation.navigate('DOB')
     }
     render() {
         return (
@@ -35,6 +34,9 @@ class Password extends React.Component {
                 <SafeAreaView style={styles.navbar}>
                     <Text style={styles.loginText}>Create account</Text>
                 </SafeAreaView>
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('SignUp')}>
+                    <Image style={styles.backImage} source={require('../assets/back.png')} />
+                </TouchableOpacity>
                 <Formik
                     initialValues={{ password: '' }}
                     validationSchema={this.reviewShcema}
@@ -42,9 +44,6 @@ class Password extends React.Component {
                 >
                     {props => (
                         <View style={styles.subContainer}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}>
-                                <Image style={styles.backImage} source={require('../assets/back.png')} />
-                            </TouchableOpacity>
                             <Text style={styles.inputHeader}>Create a password</Text>
                             <CustomTextInput
                                 onChangeText={props.handleChange('password')}
@@ -56,23 +55,23 @@ class Password extends React.Component {
                             <Text style={styles.belowText}>Use at least 8 characters</Text>
                             <View style={styles.buttonContainer}>
                                 <Button
-                                    height={Platform.OS==="ios"?40:50}
+                                    height={Platform.OS === "ios" ? 40 : 50}
                                     width={150}
                                     color='black'
                                     buttonText='NEXT'
                                     backgroundColor='white'
                                     disabled={props.values.password != '' && props.errors.password === undefined ? false : true}
-                                    onPress={() => props.handleSubmit(this.props.navigation.navigate('DOB'))}
+                                    onPress={() => props.handleSubmit()}
                                 />
                             </View>
                         </View>
                     )}
                 </Formik>
                 <EyeToggle
-                        height={Platform.OS==="ios"?147:122}
-                        right={0}
-                        active={(y) => this.setState({ eye_enable: y })}
-                    />
+                    height={Platform.OS === "ios" ? 147 : 122}
+                    right={0}
+                    active={(y) => this.setState({ eye_enable: y })}
+                />
             </View>
         )
     }
@@ -80,7 +79,7 @@ class Password extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
     doLogin: data => dispatch(doLogin(data)),
 })
-export default connect(null, mapDispatchToProps)(Password)
+export default connect(null,mapDispatchToProps)(Password)
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -92,15 +91,15 @@ const styles = StyleSheet.create({
     loginText: {
         color: 'white',
         fontWeight: 'bold',
-        fontSize:Platform.OS==="ios"?null:vh(16)
+        fontSize: Platform.OS === "ios" ? null : vh(16)
     },
     subContainer: {
         marginLeft: vw(15),
         marginRight: vw(15)
     },
     backImage: {
-        height:Platform.OS? vh(20):vh(25),
-        width: Platform.OS? vh(20):vh(25)
+        height: Platform.OS ? vh(20) : vh(25),
+        width: Platform.OS ? vh(20) : vh(25)
     },
     inputHeader: {
         color: 'white',

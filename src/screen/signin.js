@@ -5,8 +5,6 @@ import CustomTextInput from '../customs/customTextInput'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import Button from '../customs/button'
-import HomeScreen from '../screen/Homescreen'
-import Bottom from '../screen/bottomtab'
 import EyeToggle from '../customs/toggle_eye'
 import { doLogin ,action} from '../action/index'
 import { connect} from 'react-redux'
@@ -17,6 +15,7 @@ class Signin extends React.Component {
         animate:true,
         eye_enable:true
     }
+
 
     reviewShcema = yup.object({
         email: yup.string().required().email(),
@@ -37,6 +36,7 @@ class Signin extends React.Component {
         }
     }
     render() {
+
         return (
             <View style={styles.container}>
                 <SafeAreaView style={styles.navbar}>
@@ -85,7 +85,7 @@ class Signin extends React.Component {
                         active={(y) => this.setState({ eye_enable: y })}
                     />
                 <View style={styles.bottomContainer}>
-                    <TouchableOpacity style={styles.bottomButton}>
+                    <TouchableOpacity style={styles.bottomButton} onPress={()=>this.props.navigation.navigate('LoginWithoutPassword')}>
                         <Text style={styles.bottomText}>LOG IN WITHOUT PASSWORD</Text>
                     </TouchableOpacity>
                 </View>

@@ -5,10 +5,6 @@ import CustomTextInput from '../customs/customTextInput'
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import Button from '../customs/button'
-import SignUp from '../screen/signup'
-import DOB from '../screen/DOB'
-import Gender from '../screen/gender'
-import language from './Language'
 import { doLogin } from '../action/index'
 import { connect } from 'react-redux'
  class name extends React.Component {
